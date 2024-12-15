@@ -7,16 +7,12 @@ class TwoSum {
         val result = IntArray(2)
         for((i, n) in nums.withIndex()){
             val complement = target - n
-            val keys = map.filterValues { it == complement }.keys
-            if(keys.isNotEmpty()){
-                for(k in keys){
-                    if(k != i){
-                        result[0] = k
-                        result[1] = i
-                    }
-                }
+            val value = map[complement]
+            if(value != null){
+                result[0] = value
+                result[1] = i
             } else {
-                map[i] = n
+                map[n] = i
             }
         }
         return result
